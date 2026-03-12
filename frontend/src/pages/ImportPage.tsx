@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Steps,
   Button,
@@ -23,7 +23,6 @@ interface ColumnMapping {
 
 export default function ImportPage() {
   const [step, setStep] = useState(0);
-  const [file, setFile] = useState<File | null>(null);
   const [fileBase64, setFileBase64] = useState<string | null>(null);
   const [preview, setPreview] = useState<any[]>([]);
   const [columnMapping, setColumnMapping] = useState<ColumnMapping | null>(null);
@@ -32,8 +31,6 @@ export default function ImportPage() {
   const [result, setResult] = useState<any>(null);
 
   const handleFileChange = async (file: File) => {
-    setFile(file);
-
     // Converter para base64
     const reader = new FileReader();
     reader.onload = (e) => {

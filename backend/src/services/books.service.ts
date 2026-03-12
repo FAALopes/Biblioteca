@@ -141,7 +141,7 @@ export const booksService = {
       total,
       catalogued,
       percentCatalogued: total > 0 ? Math.round((catalogued / total) * 100) : 0,
-      byStatus: byShelves.map((s) => ({
+      byStatus: byStatus.map((s) => ({
         status: s.status,
         count: s._count,
       })),

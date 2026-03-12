@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   Upload,
@@ -106,7 +106,7 @@ export default function PhotosPage() {
       dataIndex: "id",
       key: "ocrStatus",
       width: "15%",
-      render: (id: number, record: Photo) => {
+      render: (_: any, record: Photo) => {
         const hasOcr = record.ocrResults && record.ocrResults.length > 0;
         return hasOcr ? (
           <span style={{ color: "#52b788" }}>✓ Analisado</span>

@@ -79,6 +79,12 @@ export const shelvesService = {
         capacity: data.capacity,
         notes: data.notes,
       },
+      include: {
+        books: {
+          where: { deletedAt: null },
+          orderBy: { positionIndex: "asc" },
+        },
+      },
     });
   },
 

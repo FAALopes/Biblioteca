@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { Book, Shelf, Photo, OcrResult } from "../types";
+import { Book, Shelf } from "../types";
 
 const api: AxiosInstance = axios.create({
   baseURL: "/api",

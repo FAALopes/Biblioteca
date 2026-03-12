@@ -33,6 +33,7 @@ export interface Photo {
   uploadedAt: string;
   bookId?: number;
   metadata?: any;
+  ocrResults?: OcrResult[];
 }
 
 export interface OcrResult {
@@ -56,7 +57,7 @@ export interface ApiResponse<T> {
 export interface ListResponse<T> {
   success: boolean;
   data: {
-    [key: string]: T[];
+    items: T[];
     total: number;
     page: number;
     limit: number;

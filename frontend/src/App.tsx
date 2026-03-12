@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import ptPT from "antd/locale/pt_PT";

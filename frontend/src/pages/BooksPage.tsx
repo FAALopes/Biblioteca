@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Table, Button, Input, Select, Spin, message, Space, Popconfirm } from "antd";
 import { PlusOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { booksAPI, shelvesAPI } from "../services/api";

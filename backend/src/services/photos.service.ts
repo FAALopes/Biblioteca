@@ -94,14 +94,12 @@ export const photosService = {
 
   async updatePhotoMetadata(id: number, metadata: any) {
     const photo = await this.getPhoto(id);
+    const existingMeta = photo.metadata ? Object.assign({}, photo.metadata) : {};
 
     return await prisma.photo.update({
       where: { id },
       data: {
-        metadata: {
-          ...photo.metadata,
-          ...metadata,
-        },
+        metadata: Object.assign(existingMeta, metadata),
       },
     });
   },
