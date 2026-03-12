@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id              Int       @id @default(autoincrement())
+  title           String
+  author          String?
+  isbn            String?   @unique
+  coverImagePath  String?   // caminho local: /uploads/books/123.jpg
+  notes           String?
+
+  // Localização
+  shelfId         Int?
+  positionIndex   Int?      // ordem dentro da prateleira
+
+  // Status
+  status          String    @default("nao-catalogado")
+  statusUpdatedAt DateTime  @default(now())
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime? // soft delete
+
+  shelf           Shelf?    @relation(fields: [shelfId], references: [id], onDelete: SetNull)
+  photos          Photo[]
+  ocrResults      OcrResult[]
+
+  @@map("books")
+}
+
+model Shelf {
+  id              Int       @id @default(autoincrement())
+  label           String    @unique // "A1", "A2", "B1"
+  sectionLetter   String    // "A", "B", "C"
+  shelfNumber     Int       // 1, 2, 3
+  capacity        Int?
+  notes           String?
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  books           Book[]
+
+  @@unique([sectionLetter, shelfNumber])
+  @@map("shelves")
+}
+
+model Photo {
+  id              Int       @id @default(autoincrement())
+  bookId          Int?
+  filePath        String    // /uploads/photos/uuid.jpg
+  uploadedAt      DateTime  @default(now())
+  metadata        Json?     // { section, shelf, position_x, position_y }
+
+  book            Book?     @relation(fields: [bookId], references: [id], onDelete: SetNull)
+  ocrResults      OcrResult[]
+
+  @@map("photos")
+}
+
+model OcrResult {
+  id              Int       @id @default(autoincrement())
+  photoId         Int
+  bookId          Int?
+
+  // Extraído via Tesseract.js
+  extractedTitle  String?
+  extractedAuthor String?
+  extractedIsbn   String?
+  confidence      Float?    // 0-1
+  rawText         String?
+
+  processedAt     DateTime  @default(now())
+
+  photo           Photo     @relation(fields: [photoId], references: [id], onDelete: Cascade)
+  book            Book?     @relation(fields: [bookId], references: [id], onDelete: SetNull)
+
+  @@map("ocr_results")
+}
+
+model ExcelImportLog {
+  id              Int       @id @default(autoincrement())
+  filename        String
+  totalRows       Int
+  successCount    Int
+  errorCount      Int
+  importedAt      DateTime  @default(now())
+  errors          Json?     // array de { row, error }
+
+  @@map("excel_import_logs")
+}
