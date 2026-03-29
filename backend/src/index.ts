@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { config } from "./config";
+import path from "path";
+import { config, isProduction } from "./config";
 import { errorHandler, notFoundHandler, AppError } from "./middleware/errorHandler";
 import { PrismaClient } from "@prisma/client";
 
@@ -33,6 +34,15 @@ app.use(`${config.apiPrefix}/shelves`, shelvesRoutes);
 app.use(`${config.apiPrefix}/photos`, photosRoutes);
 app.use(`${config.apiPrefix}/ocr`, ocrRoutes);
 app.use(`${config.apiPrefix}/import`, importRoutes);
+
+// Serve frontend in production
+if (isProduction) {
+  const frontendPath = path.join(__dirname, "../../frontend/dist");
+  app.use(express.static(frontendPath));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+  });
+}
 
 // 404 Handler
 app.use(notFoundHandler);
