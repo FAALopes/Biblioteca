@@ -16,6 +16,10 @@ model Book {
   author          String?
   isbn            String?   @unique
   coverImagePath  String?   // caminho local: /uploads/books/123.jpg
+  collection      String?   // Coleção (ex: "Europa América Ficção Científica")
+  genre           String?   // Género (ex: "Romance Histórico", "Ficção Científica")
+  language        String?   // Idioma (ex: "Português", "Inglês", "Espanhol")
+  grouping        String?   // Agrupamento (ex: "Saga", "Trilogia")
   notes           String?
 
   // Localização

@@ -15,6 +15,10 @@ export interface CreateBookInput {
   title: string;
   author?: string;
   isbn?: string;
+  collection?: string;
+  genre?: string;
+  language?: string;
+  grouping?: string;
   notes?: string;
   shelfId?: number;
   positionIndex?: number;
@@ -24,6 +28,10 @@ export interface UpdateBookInput {
   title?: string;
   author?: string;
   isbn?: string;
+  collection?: string;
+  genre?: string;
+  language?: string;
+  grouping?: string;
   notes?: string;
   shelfId?: number;
   positionIndex?: number;
