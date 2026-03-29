@@ -76,19 +76,5 @@ export const ocrAPI = {
     api.get<any>("/ocr/pending").then((res) => res.data.data),
 };
 
-// Import
-export const importAPI = {
-  uploadExcel: (file: File) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    return api.post<any>("/import/excel", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    }).then((res) => res.data.data);
-  },
-  merge: (data: any) =>
-    api.post<any>("/import/excel/merge", data).then((res) => res.data.data),
-  logs: () =>
-    api.get<any>("/import/logs").then((res) => res.data.data),
-};
 
 export default api;

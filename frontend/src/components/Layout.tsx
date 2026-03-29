@@ -4,7 +4,7 @@ import {
   HomeOutlined,
   BookOutlined,
   FileImageOutlined,
-  ImportOutlined,
+
   AppstoreOutlined,
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -44,12 +44,6 @@ export default function Layout({ children }: LayoutProps) {
       icon: <FileImageOutlined />,
       label: "Fotos & OCR",
       onClick: () => navigate("/photos"),
-    },
-    {
-      key: "/import",
-      icon: <ImportOutlined />,
-      label: "Importar Excel",
-      onClick: () => navigate("/import"),
     },
   ];
 

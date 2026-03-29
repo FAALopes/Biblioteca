@@ -10,7 +10,7 @@ import booksRoutes from "./routes/books.routes";
 import shelvesRoutes from "./routes/shelves.routes";
 import photosRoutes from "./routes/photos.routes";
 import ocrRoutes from "./routes/ocr.routes";
-import importRoutes from "./routes/import.routes";
+
 
 const app = express();
 const prisma = new PrismaClient();
@@ -33,7 +33,7 @@ app.use(`${config.apiPrefix}/books`, booksRoutes);
 app.use(`${config.apiPrefix}/shelves`, shelvesRoutes);
 app.use(`${config.apiPrefix}/photos`, photosRoutes);
 app.use(`${config.apiPrefix}/ocr`, ocrRoutes);
-app.use(`${config.apiPrefix}/import`, importRoutes);
+
 
 // Serve frontend in production
 if (isProduction) {

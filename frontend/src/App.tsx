@@ -9,7 +9,7 @@ import DashboardPage from "./pages/DashboardPage";
 import BooksPage from "./pages/BooksPage";
 import ShelvesPage from "./pages/ShelvesPage";
 import PhotosPage from "./pages/PhotosPage";
-import ImportPage from "./pages/ImportPage";
+
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <Route path="/books" element={<BooksPage />} />
             <Route path="/shelves" element={<ShelvesPage />} />
             <Route path="/photos" element={<PhotosPage />} />
-            <Route path="/import" element={<ImportPage />} />
+
           </Routes>
         </Layout>
       </BrowserRouter>

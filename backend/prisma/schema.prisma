@@ -86,15 +86,3 @@ model OcrResult {
 
   @@map("ocr_results")
 }
-
-model ExcelImportLog {
-  id              Int       @id @default(autoincrement())
-  filename        String
-  totalRows       Int
-  successCount    Int
-  errorCount      Int
-  importedAt      DateTime  @default(now())
-  errors          Json?     // array de { row, error }
-
-  @@map("excel_import_logs")
-}
