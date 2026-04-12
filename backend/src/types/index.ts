@@ -22,6 +22,7 @@ export interface CreateBookInput {
   notes?: string;
   shelfId?: number;
   positionIndex?: number;
+  status?: string;
 }
 
 export interface UpdateBookInput {

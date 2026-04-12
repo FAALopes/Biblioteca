@@ -47,6 +47,7 @@ export const booksController = {
       notes: data.notes,
       shelfId: data.shelfId ? parseInt(data.shelfId) : undefined,
       positionIndex: data.positionIndex ? parseInt(data.positionIndex) : undefined,
+      status: data.status,
     });
 
     res.status(201).json({

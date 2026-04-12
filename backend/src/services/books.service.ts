@@ -80,6 +80,8 @@ export const booksService = {
         notes: data.notes,
         shelfId: data.shelfId,
         positionIndex: data.positionIndex,
+        status: data.status || "nao-catalogado",
+        statusUpdatedAt: data.status ? new Date() : undefined,
       },
       include: { shelf: true },
     });
