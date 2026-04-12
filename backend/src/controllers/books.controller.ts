@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { booksService } from "../services/books.service";
 import { asyncHandler } from "../utils/asyncHandler";
+import { prisma } from "../index";
 
 export const booksController = {
   list: asyncHandler(async (req: Request, res: Response) => {
@@ -87,6 +88,24 @@ export const booksController = {
     res.json({
       success: true,
       message: "Livro removido",
+    });
+  }),
+
+  bulkDelete: asyncHandler(async (req: Request, res: Response) => {
+    const { status, ids } = req.body;
+    let where: any = { deletedAt: null };
+    if (status) where.status = status;
+    if (ids) where.id = { in: ids };
+
+    const result = await prisma.book.updateMany({
+      where,
+      data: { deletedAt: new Date() },
+    });
+
+    res.json({
+      success: true,
+      message: `${result.count} livros removidos`,
+      count: result.count,
     });
   }),
 

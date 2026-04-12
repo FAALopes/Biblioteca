@@ -9,5 +9,6 @@ router.get("/:id", booksController.get);
 router.post("/", booksController.create);
 router.put("/:id", booksController.update);
 router.delete("/:id", booksController.delete);
+router.post("/bulk-delete", booksController.bulkDelete);
 
 export default router;
